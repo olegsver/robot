@@ -4,7 +4,7 @@ namespace Robot\Components\Validators;
 
 class RequestValidator extends BaseValidator
 {
-    public function rules(): array
+    protected function rules(): array
     {
         return [
             'source' => 'required|string',
