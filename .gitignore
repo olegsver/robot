@@ -1,0 +1,16 @@
+.idea
+.~lock.*
+
+vendor
+composer.lock
+
+.php_cs.cache
+.phpunit.result.cache
+
+docker/.env
+
+tests/coverage
+
+build
+phpcs.xml
+phpunit.xml
