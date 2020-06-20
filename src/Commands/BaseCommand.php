@@ -39,7 +39,7 @@ abstract class BaseCommand
         } catch (ValidationException $exception) {
             $this->errorResponse('Validation error', $exception->getErrorsAsArray());
         } catch (Exception $exception) {
-            $this->errorResponse($exception->getMessage(), []);
+            $this->errorResponse($exception->getMessage(), $exception->getTrace());
         }
     }
 

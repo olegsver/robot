@@ -3,6 +3,8 @@
 namespace Robot\Commands;
 
 use Robot\Components\Factories\DtoFactory;
+use Robot\Components\Validators\SourceValidator;
+use Robot\Interfaces\SourceRepository;
 use Robot\Interfaces\Validate;
 
 class RobotCommand extends BaseCommand
@@ -17,7 +19,7 @@ class RobotCommand extends BaseCommand
         /**
  * @var DtoFactory $requestFactory 
 */
-        $requestFactory = $this->getContainer()->make(DtoFactory::class);
+        $requestFactory = $this->getContainer()->get(DtoFactory::class);
         $request = $requestFactory->makeRobotRequest($argvParams);
         /**
  * @var Validate $validator 
@@ -29,5 +31,16 @@ class RobotCommand extends BaseCommand
                 'result' => $request->result,
             ]
         );
+        /**
+ * @var SourceRepository $service 
+*/
+        $service = $this->getContainer()->get(SourceRepository::class);
+        $source = $service->findByRequest($request);
+
+        /**
+ * @var SourceValidator $validator 
+*/
+        $validator = $this->getContainer()->get(SourceValidator::class);
+        $validator->validateOrFail(['source data' => $source]);
     }
 }

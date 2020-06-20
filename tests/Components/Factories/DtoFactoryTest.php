@@ -1,6 +1,6 @@
 <?php
 
-namespace Robot\Tests\Components\factories;
+namespace Robot\Tests\Components\Factories;
 
 use Robot\Components\Factories\DtoFactory;
 use Robot\Dto\RobotRequest;

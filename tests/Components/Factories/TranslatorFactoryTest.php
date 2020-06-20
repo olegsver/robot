@@ -1,6 +1,6 @@
 <?php
 
-namespace Robot\Tests\Components\factories;
+namespace Robot\Tests\Components\Factories;
 
 use Illuminate\Translation\Translator;
 use Robot\Components\Factories\FileLoaderFactory;
