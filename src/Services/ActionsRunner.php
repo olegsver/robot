@@ -20,7 +20,9 @@ class ActionsRunner implements ActionsRunnerInterface
         $workingData = clone $source;
         foreach ($source->commands as $actionCode) {
             $action = $this->factory->makeActionByActionCode($actionCode);
-            // apply action to copy of source
+            if ($action->isEnoughEnergy($workingData->battery) === false) {
+                break;
+            }
             $workingData = $action->run($workingData);
         }
         return $workingData;

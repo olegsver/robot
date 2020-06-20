@@ -10,4 +10,6 @@ use Robot\Dto\Source;
 interface RobotAction
 {
     public function run(Source $source): Source;
+
+    public function isEnoughEnergy(int $energy): bool;
 }

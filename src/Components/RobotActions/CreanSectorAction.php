@@ -13,4 +13,9 @@ class CreanSectorAction implements RobotAction
         echo __CLASS__, PHP_EOL;
         return $source;
     }
+
+    public function isEnoughEnergy(int $energy): bool
+    {
+        return true;
+    }
 }
