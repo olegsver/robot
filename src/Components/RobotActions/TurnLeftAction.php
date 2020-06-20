@@ -7,6 +7,7 @@ use Robot\Interfaces\RobotAction;
 
 class TurnLeftAction implements RobotAction
 {
+    private const PRICE = 1;
 
     public function run(Source $source): Source
     {
@@ -18,4 +19,5 @@ class TurnLeftAction implements RobotAction
     {
         return true;
     }
+
 }

@@ -7,6 +7,7 @@ use Robot\Interfaces\RobotAction;
 
 class GoFrontAction implements RobotAction
 {
+    private const PRICE = 2;
 
     public function run(Source $source): Source
     {

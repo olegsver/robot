@@ -7,6 +7,7 @@ use Robot\Interfaces\RobotAction;
 
 class CreanSectorAction implements RobotAction
 {
+    private const PRICE = 5;
 
     public function run(Source $source): Source
     {

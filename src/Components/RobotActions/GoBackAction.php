@@ -7,6 +7,7 @@ use Robot\Interfaces\RobotAction;
 
 class GoBackAction implements RobotAction
 {
+    private const PRICE = 3;
 
     public function run(Source $source): Source
     {
