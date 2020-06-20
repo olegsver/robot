@@ -12,7 +12,6 @@ class SourceValidator extends BaseValidator
     {
         return [
             'source data' => ['required', new CorrectMap(), new CorrectStartPosition(), new CorrectCommands()],
-            'battery' => 'required|int|min:0',
         ];
     }
 }

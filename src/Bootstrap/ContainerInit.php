@@ -5,8 +5,10 @@ namespace Robot\Bootstrap;
 use Illuminate\Contracts\Container\Container as ContainerInterface;
 use Robot\Components\JsonSerializer\JsonSerializer;
 use Robot\Components\Validators\RequestValidator;
+use Robot\Interfaces\ActionsRunner as ActionsRunnerInterface;
 use Robot\Interfaces\SourceRepository as SourceRepositoryInterface;
 use Robot\Interfaces\Validate;
+use Robot\Services\ActionsRunner;
 use Robot\Services\SourceRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -31,6 +33,7 @@ class ContainerInit
     public function init(): void
     {
         $this->container->bind(SerializerInterface::class, JsonSerializer::class);
+        $this->container->bind(ActionsRunnerInterface::class, ActionsRunner::class);
         $this->container->bind(Validate::class, RequestValidator::class);
         $this->container->bind(SourceRepositoryInterface::class, SourceRepository::class);
     }
