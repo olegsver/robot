@@ -5,7 +5,6 @@ namespace Robot\Tests\Components\LanguageDir;
 use Robot\Components\LanguageDir\LanguageDir;
 use Robot\Tests\BaseTestCase;
 
-
 /**
  * Class LanguageDirTest
  */

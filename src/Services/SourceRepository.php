@@ -13,11 +13,11 @@ use Symfony\Component\Serializer\SerializerInterface;
 class SourceRepository implements SourceRepositoryInterface
 {
     /**
-     * @var FileHelper 
+     * @var FileHelper
      */
     private $fileHelper;
     /**
-     * @var SerializerInterface 
+     * @var SerializerInterface
      */
     private $serializer;
 
@@ -39,7 +39,7 @@ class SourceRepository implements SourceRepositoryInterface
             throw new WrongFileException("Source file is empty");
         }
         /**
- * @var Source $dto 
+ * @var Source $dto
 */
         $dto = $this->serializer->deserialize($source, Source::class, SerializeTypes::TYPE_JSON);
         if (!$dto instanceof Source) {
@@ -47,5 +47,4 @@ class SourceRepository implements SourceRepositoryInterface
         }
         return $dto;
     }
-
 }

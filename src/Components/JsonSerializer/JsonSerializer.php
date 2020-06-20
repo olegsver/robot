@@ -28,6 +28,4 @@ class JsonSerializer extends Serializer
         ];
         parent::__construct($normalizers, $encoders);
     }
-
-
 }

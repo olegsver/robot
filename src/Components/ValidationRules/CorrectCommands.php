@@ -4,18 +4,17 @@ namespace Robot\Components\ValidationRules;
 
 use Illuminate\Contracts\Validation\Rule;
 use Robot\Dto\Source;
-use Robot\Dto\StartPosition;
-use Robot\Enums\Directions;
+use Robot\Enums\Actions;
 
-class CorrectStartPosition implements Rule
+class CorrectCommands implements Rule
 {
-    private $lastError = ':attribute contains incorrect start position';
+    private $lastError = ':attribute contains incorrect commands';
 
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value): bool
@@ -23,14 +22,11 @@ class CorrectStartPosition implements Rule
         if (!$value instanceof Source) {
             return false;
         }
-        if (!$value->start instanceof StartPosition) {
+        if (!is_array($value->commands)) {
             return false;
         }
-        if (!isset($value->map[$value->start->X][$value->start->Y])) {
-            return false;
-        }
-        if (!in_array($value->start->facing, Directions::getAll())) {
-            $this->lastError = 'Wrong facing direction';
+        $incorrectCommands = array_diff($value->commands, Actions::getAll());
+        if (!empty($incorrectCommands)) {
             return false;
         }
         return true;

@@ -5,19 +5,19 @@ namespace Robot\Dto;
 class Source
 {
     /**
-     * @var array 
+     * @var array
      */
     public $map;
     /**
-     * @var StartPosition 
+     * @var StartPosition
      */
     public $start;
     /**
-     * @var array 
+     * @var array
      */
     public $commands;
     /**
-     * @var int 
+     * @var int
      */
     public $battery;
 }

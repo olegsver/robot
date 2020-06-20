@@ -65,5 +65,4 @@ abstract class BaseValidator implements Validate
             'array' => 'The :attribute must be an array',
         ];
     }
-
 }

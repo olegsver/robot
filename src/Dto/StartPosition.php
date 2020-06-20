@@ -5,15 +5,15 @@ namespace Robot\Dto;
 class StartPosition
 {
     /**
-     * @var int 
+     * @var int
      */
     public $X;
     /**
-     * @var int 
+     * @var int
      */
     public $Y;
     /**
-     * @var string 
+     * @var string
      */
     public $facing;
 }

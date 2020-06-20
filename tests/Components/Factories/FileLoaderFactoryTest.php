@@ -8,7 +8,6 @@ use Robot\Components\Factories\FileLoaderFactory;
 use Robot\Components\LanguageDir\LanguageDir;
 use Robot\Tests\BaseTestCase;
 
-
 /**
  * Class FileLoaderFactoryTest
  */

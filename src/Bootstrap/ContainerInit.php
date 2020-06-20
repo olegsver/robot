@@ -10,7 +10,6 @@ use Robot\Interfaces\Validate;
 use Robot\Services\SourceRepository;
 use Symfony\Component\Serializer\SerializerInterface;
 
-
 /**
  * Class ContainerInit
  */
@@ -35,6 +34,4 @@ class ContainerInit
         $this->container->bind(Validate::class, RequestValidator::class);
         $this->container->bind(SourceRepositoryInterface::class, SourceRepository::class);
     }
-
-
 }

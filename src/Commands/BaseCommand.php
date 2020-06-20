@@ -52,5 +52,4 @@ abstract class BaseCommand
         }
         print_r($context);
     }
-
 }

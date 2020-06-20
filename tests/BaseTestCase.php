@@ -25,5 +25,4 @@ abstract class BaseTestCase extends TestCase
         }
         return $this->faker;
     }
-
 }

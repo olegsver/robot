@@ -52,5 +52,4 @@ class ValidationException extends Exception
     {
         return $this->errors->get($attribute);
     }
-
 }

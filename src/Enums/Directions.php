@@ -18,5 +18,4 @@ class Directions
             self::WEST,
         ];
     }
-
 }

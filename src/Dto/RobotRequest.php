@@ -5,11 +5,11 @@ namespace Robot\Dto;
 class RobotRequest
 {
     /**
-     * @var string 
+     * @var string
      */
     public $source;
     /**
-     * @var string 
+     * @var string
      */
     public $result;
 }

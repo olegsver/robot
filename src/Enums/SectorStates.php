@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Robot\Enums;
 
 class SectorStates
@@ -17,5 +16,4 @@ class SectorStates
             self::STATE_WALL,
         ];
     }
-
 }

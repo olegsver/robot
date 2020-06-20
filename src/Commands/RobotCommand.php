@@ -17,13 +17,13 @@ class RobotCommand extends BaseCommand
     protected function runCommand(array $argvParams): void
     {
         /**
- * @var DtoFactory $requestFactory 
-*/
+         * @var DtoFactory $requestFactory
+         */
         $requestFactory = $this->getContainer()->get(DtoFactory::class);
         $request = $requestFactory->makeRobotRequest($argvParams);
         /**
- * @var Validate $validator 
-*/
+         * @var Validate $validator
+         */
         $validator = $this->getContainer()->get(Validate::class);
         $validator->validateOrFail(
             [
@@ -32,14 +32,14 @@ class RobotCommand extends BaseCommand
             ]
         );
         /**
- * @var SourceRepository $service 
-*/
+         * @var SourceRepository $service
+         */
         $service = $this->getContainer()->get(SourceRepository::class);
         $source = $service->findByRequest($request);
 
         /**
- * @var SourceValidator $validator 
-*/
+         * @var SourceValidator $validator
+         */
         $validator = $this->getContainer()->get(SourceValidator::class);
         $validator->validateOrFail(['source data' => $source]);
     }

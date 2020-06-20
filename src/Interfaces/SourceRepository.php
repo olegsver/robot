@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Robot\Interfaces;
 
 use Robot\Dto\RobotRequest;
