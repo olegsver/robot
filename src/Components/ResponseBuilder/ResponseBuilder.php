@@ -20,12 +20,12 @@ class ResponseBuilder
 
     public function setVisited(int $x, int $y): void
     {
-        $this->response->visited[] = $this->makeCoord($x, $y);
+        array_unshift($this->response->visited, $this->makeCoord($x, $y));
     }
 
     public function setCleaned(int $x, int $y): void
     {
-        $this->response->cleaned[] = $this->makeCoord($x, $y);
+        array_unshift($this->response->cleaned, $this->makeCoord($x, $y));
     }
 
     public function setBatteryLeft(int $batteryLet): void
