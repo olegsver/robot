@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Robot\Tests\Components\ResponseBuilder;
 
 use Robot\Components\ResponseBuilder\ResponseBuilder;
@@ -59,6 +58,4 @@ class ResponseBuilderTest extends BaseTestCase
         $result = $builder->getResponse();
         $this->assertSame($value, $result->final);
     }
-
-
 }
