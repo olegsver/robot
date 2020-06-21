@@ -50,6 +50,8 @@ class ResponseBuilder
 
     public function getResponse(): Response
     {
+		$this->response->cleaned = array_unique($this->response->cleaned);
+		$this->response->visited = array_unique($this->response->visited);
         return $this->response;
     }
 
