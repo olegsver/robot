@@ -34,6 +34,4 @@ class ActionFactoryTest extends BaseTestCase
             $this->assertSame($source, $result->getSource());
         }
     }
-
-
 }
