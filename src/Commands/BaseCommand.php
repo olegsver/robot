@@ -5,6 +5,7 @@ namespace Robot\Commands;
 use Exception;
 use Illuminate\Contracts\Container\Container as ContainerInterface;
 use Robot\Exceptions\ValidationException;
+use Robot\Interfaces\LoggerInterface;
 
 abstract class BaseCommand
 {
@@ -12,6 +13,10 @@ abstract class BaseCommand
      * @var ContainerInterface
      */
     private $container;
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * BaseCommand constructor.
@@ -21,12 +26,19 @@ abstract class BaseCommand
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
+        $this->logger = $this->getContainer()->get(LoggerInterface::class);
     }
 
     protected function getContainer(): ContainerInterface
     {
         return $this->container;
     }
+
+    protected function getLogger(): LoggerInterface
+    {
+        return $this->logger;
+    }
+
 
     abstract protected function runCommand(array $params): void;
 
@@ -45,11 +57,7 @@ abstract class BaseCommand
 
     protected function errorResponse(string $text, array $context): void
     {
-        echo $this->getHelpMessage(), PHP_EOL;
-        echo sprintf('%s Error: %s;', date('Y-m-d H:i:s'), $text), PHP_EOL;
-        if (empty($context)) {
-            return;
-        }
-        print_r($context);
+        $this->getLogger()->log($this->getHelpMessage(), null);
+        $this->getLogger()->log("Error: {$text}", $context);
     }
 }
