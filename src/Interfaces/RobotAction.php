@@ -17,4 +17,6 @@ interface RobotAction
     public function getResponse(): ResponseBuilder;
 
     public function isEnoughEnergy(int $energy): bool;
+	
+	public function getIsFailed(): bool;
 }

@@ -17,7 +17,9 @@ abstract class BasicMovementAction extends BasicAction
             $this->getSource()->start->X = $newX;
             $this->getSource()->start->Y = $newY;
             $this->getResponse()->setVisited($newX, $newY);
-        }
+        } else {
+			$this->setIsFailed(true);
+		}
 
         $this->getResponse()->setPosition($this->getSource()->start);
         $this->getResponse()->setBatteryLeft($this->getSource()->battery);
@@ -25,10 +27,10 @@ abstract class BasicMovementAction extends BasicAction
 
     private function isValidSector(int $x, int $y): bool
     {
-        if (!isset($this->getSource()->map[$x][$y])) {
+        if (!isset($this->getSource()->map[$y][$x])) {
             return false;
         }
-        $sector = $this->getSource()->map[$x][$y];
+        $sector = $this->getSource()->map[$y][$x];
         return $sector === SectorStates::STATE_CLEANABLE;
     }
 
