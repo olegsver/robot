@@ -27,12 +27,13 @@ class CorrectStartPosition implements Rule
         if (!$value->start instanceof StartPosition) {
             return false;
         }
-        if (!isset($value->map[$value->start->X][$value->start->Y])) {
+        if (!isset($value->map[$value->start->Y][$value->start->X])) {
             return false;
         }
-        $sector = $value->map[$value->start->X][$value->start->Y];
+        $sector = $value->map[$value->start->Y][$value->start->X];
+
         if ($sector !== SectorStates::STATE_CLEANABLE) {
-            $this->lastError = 'Wrong start position sector';
+            $this->lastError = "Wrong start position sector: {$sector}";
             return false;
         }
         if (!in_array($value->start->facing, Directions::getAll())) {

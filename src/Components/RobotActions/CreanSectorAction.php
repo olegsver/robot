@@ -5,18 +5,18 @@ namespace Robot\Components\RobotActions;
 use Robot\Dto\Source;
 use Robot\Interfaces\RobotAction;
 
-class CreanSectorAction implements RobotAction
+class CreanSectorAction extends BasicAction implements RobotAction
 {
     private const PRICE = 5;
 
-    public function run(Source $source): Source
+    protected function getEnergyCost(): int
     {
-        echo __CLASS__, PHP_EOL;
-        return $source;
+        return self::PRICE;
     }
 
-    public function isEnoughEnergy(int $energy): bool
+    public function run(Source $source): Source
     {
-        return true;
+        $source->battery -= $this->getEnergyCost();
+        return $source;
     }
 }
