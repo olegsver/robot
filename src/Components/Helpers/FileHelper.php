@@ -7,7 +7,7 @@ use Robot\Exceptions\WrongFileException;
 class FileHelper
 {
     /**
-     * @param  string $fileName
+     * @param string $fileName
      * @return string
      * @throws WrongFileException
      */
@@ -21,5 +21,10 @@ class FileHelper
             throw new WrongFileException("can not read file {$fileName}");
         }
         return $result;
+    }
+
+    public function saveFileSourceOrFail(string $fileName, string $data): void
+    {
+        file_put_contents($fileName, $data);
     }
 }
