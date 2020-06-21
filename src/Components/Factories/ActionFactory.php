@@ -15,27 +15,27 @@ use Robot\Interfaces\RobotAction;
 
 class ActionFactory
 {
-    public function makeTurnLeftAction(ResponseBuilder $builder, Source $source): RobotAction
+    private function makeTurnLeftAction(ResponseBuilder $builder, Source $source): RobotAction
     {
         return new TurnLeftAction($builder, $source);
     }
 
-    public function makeTurnRightAction(ResponseBuilder $builder, Source $source): RobotAction
+    private function makeTurnRightAction(ResponseBuilder $builder, Source $source): RobotAction
     {
         return new TurnRightAction($builder, $source);
     }
 
-    public function makeGoFrontAction(ResponseBuilder $builder, Source $source): RobotAction
+    private function makeGoFrontAction(ResponseBuilder $builder, Source $source): RobotAction
     {
         return new GoFrontAction($builder, $source);
     }
 
-    public function makeGoBackAction(ResponseBuilder $builder, Source $source): RobotAction
+    private function makeGoBackAction(ResponseBuilder $builder, Source $source): RobotAction
     {
         return new GoBackAction($builder, $source);
     }
 
-    public function makeCreanSectorAction(ResponseBuilder $builder, Source $source): RobotAction
+    private function makeCreanSectorAction(ResponseBuilder $builder, Source $source): RobotAction
     {
         return new CreanSectorAction($builder, $source);
     }
