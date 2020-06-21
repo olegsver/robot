@@ -2,22 +2,35 @@
 
 namespace Robot\Components\RobotActions;
 
-use Robot\Dto\Source;
+use Robot\Enums\Directions;
+use Robot\Exceptions\LogicExcetion;
 use Robot\Interfaces\RobotAction;
 
-class TurnLeftAction implements RobotAction
+class TurnLeftAction extends BasicTurnAction implements RobotAction
 {
     private const PRICE = 1;
 
-    public function run(Source $source): Source
+    protected function getEnergyCost(): int
     {
-        echo __CLASS__, PHP_EOL;
-        return $source;
+        return self::PRICE;
     }
 
-    public function isEnoughEnergy(int $energy): bool
+    protected function getNewDirection(string $directionCode): string
     {
-        return true;
+        switch ($directionCode) {
+            case Directions::NORTH:
+                return Directions::WEST;
+                break;
+            case Directions::WEST:
+                return Directions::SOUTH;
+                break;
+            case Directions::SOUTH:
+                return Directions::EAST;
+                break;
+            case Directions::EAST:
+                return Directions::NORTH;
+                break;
+        }
+        throw new LogicExcetion("Unknown direction: {$directionCode}");
     }
-
 }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 use Robot\Dto\Source;
 use Robot\Dto\StartPosition;
 use Robot\Enums\Directions;
+use Robot\Enums\SectorStates;
 
 class CorrectStartPosition implements Rule
 {
@@ -14,8 +15,8 @@ class CorrectStartPosition implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value): bool
@@ -27,6 +28,11 @@ class CorrectStartPosition implements Rule
             return false;
         }
         if (!isset($value->map[$value->start->X][$value->start->Y])) {
+            return false;
+        }
+        $sector = $value->map[$value->start->X][$value->start->Y];
+        if ($sector !== SectorStates::STATE_CLEANABLE) {
+            $this->lastError = 'Wrong start position sector';
             return false;
         }
         if (!in_array($value->start->facing, Directions::getAll())) {
