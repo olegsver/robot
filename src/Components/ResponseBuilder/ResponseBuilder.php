@@ -17,22 +17,40 @@ class ResponseBuilder
      * @var LoggerInterface
      */
     private $logger;
+	
+	private $visitedHashMap = [];
+	
+	private $cleanedHashMap = [];
 
     public function __construct(LoggerInterface $logger)
     {
         $this->response = new Response();
         $this->logger = $logger;
     }
+	
+	private function getHash(int $x, int $y): string{
+		return sprintf('%d:%d', $x, $y);
+	}
 
     public function setVisited(int $x, int $y): void
     {
         $this->logger->log("Visiting {$x},{$y}", null);
+		$hash = $this->getHash($x, $y);
+		if (isset($this->visitedHashMap[$hash])){
+			return;
+		}
+		$this->visitedHashMap[$hash] = 1;
         array_unshift($this->response->visited, $this->makeCoord($x, $y));
     }
 
     public function setCleaned(int $x, int $y): void
     {
         $this->logger->log("Cleanging {$x},{$y}", null);
+		$hash = $this->getHash($x, $y);
+		if (isset($this->cleanedHashMap[$hash])){
+			return;
+		}
+		$this->cleanedHashMap[$hash] = 1;
         array_unshift($this->response->cleaned, $this->makeCoord($x, $y));
     }
 
@@ -50,8 +68,6 @@ class ResponseBuilder
 
     public function getResponse(): Response
     {
-		$this->response->cleaned = array_unique($this->response->cleaned);
-		$this->response->visited = array_unique($this->response->visited);
         return $this->response;
     }
 
