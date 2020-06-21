@@ -2,6 +2,7 @@
 
 namespace Robot\Interfaces;
 
+use Robot\Components\ResponseBuilder\ResponseBuilder;
 use Robot\Dto\Source;
 
 /**
@@ -9,7 +10,11 @@ use Robot\Dto\Source;
  */
 interface RobotAction
 {
-    public function run(Source $source): Source;
+    public function run(): void;
+
+    public function getSource(): Source;
+
+    public function getResponse(): ResponseBuilder;
 
     public function isEnoughEnergy(int $energy): bool;
 }

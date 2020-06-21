@@ -2,6 +2,7 @@
 
 namespace Robot\Interfaces;
 
+use Robot\Dto\Response;
 use Robot\Dto\Source;
 
 /**
@@ -9,5 +10,5 @@ use Robot\Dto\Source;
  */
 interface ActionsRunner
 {
-    public function runActions(Source $source): Source;
+    public function runActions(Source $source): Response;
 }

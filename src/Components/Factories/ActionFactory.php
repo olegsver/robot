@@ -2,59 +2,61 @@
 
 namespace Robot\Components\Factories;
 
+use Robot\Components\ResponseBuilder\ResponseBuilder;
 use Robot\Components\RobotActions\CreanSectorAction;
 use Robot\Components\RobotActions\GoBackAction;
 use Robot\Components\RobotActions\GoFrontAction;
 use Robot\Components\RobotActions\TurnLeftAction;
 use Robot\Components\RobotActions\TurnRightAction;
+use Robot\Dto\Source;
 use Robot\Enums\Actions;
 use Robot\Exceptions\LogicExcetion;
 use Robot\Interfaces\RobotAction;
 
 class ActionFactory
 {
-    public function makeTurnLeftAction(): RobotAction
+    public function makeTurnLeftAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new TurnLeftAction();
+        return new TurnLeftAction($builder, $source);
     }
 
-    public function makeTurnRightAction(): RobotAction
+    public function makeTurnRightAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new TurnRightAction();
+        return new TurnRightAction($builder, $source);
     }
 
-    public function makeGoFrontAction(): RobotAction
+    public function makeGoFrontAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new GoFrontAction();
+        return new GoFrontAction($builder, $source);
     }
 
-    public function makeGoBackAction(): RobotAction
+    public function makeGoBackAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new GoBackAction();
+        return new GoBackAction($builder, $source);
     }
 
-    public function makeCreanSectorAction(): RobotAction
+    public function makeCreanSectorAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new CreanSectorAction();
+        return new CreanSectorAction($builder, $source);
     }
 
-    public function makeActionByActionCode(string $actionCode): RobotAction
+    public function makeActionByActionCode(string $actionCode, ResponseBuilder $builder, Source $source): RobotAction
     {
         switch ($actionCode) {
             case Actions::TURN_LEFT:
-                return $this->makeTurnLeftAction();
+                return $this->makeTurnLeftAction($builder, $source);
                 break;
             case Actions::TURN_RIGHT:
-                return $this->makeTurnRightAction();
+                return $this->makeTurnRightAction($builder, $source);
                 break;
             case Actions::ADVANCE:
-                return $this->makeGoFrontAction();
+                return $this->makeGoFrontAction($builder, $source);
                 break;
             case Actions::BACK:
-                return $this->makeGoBackAction();
+                return $this->makeGoBackAction($builder, $source);
                 break;
             case Actions::CLEAN:
-                return $this->makeCreanSectorAction();
+                return $this->makeCreanSectorAction($builder, $source);
                 break;
             default:
                 throw new LogicExcetion("Unknown command: {$actionCode}");

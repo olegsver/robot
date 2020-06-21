@@ -2,16 +2,15 @@
 
 namespace Robot\Components\RobotActions;
 
-use Robot\Dto\Source;
-
 abstract class BasicTurnAction extends BasicAction
 {
 
-    public function run(Source $source): Source
+    public function run(): void
     {
-        $source->battery -= $this->getEnergyCost();
-        $source->start->facing = $this->getNewDirection($source->start->facing);
-        return $source;
+        $this->getSource()->battery -= $this->getEnergyCost();
+        $this->getSource()->start->facing = $this->getNewDirection($this->getSource()->start->facing);
+        $this->getResponse()->setPosition($this->getSource()->start);
+        $this->getResponse()->setBatteryLeft($this->getSource()->battery);
     }
 
     abstract protected function getNewDirection(string $directionCode): string;

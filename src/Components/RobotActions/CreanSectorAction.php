@@ -2,7 +2,6 @@
 
 namespace Robot\Components\RobotActions;
 
-use Robot\Dto\Source;
 use Robot\Interfaces\RobotAction;
 
 class CreanSectorAction extends BasicAction implements RobotAction
@@ -14,9 +13,14 @@ class CreanSectorAction extends BasicAction implements RobotAction
         return self::PRICE;
     }
 
-    public function run(Source $source): Source
+    public function run(): void
     {
-        $source->battery -= $this->getEnergyCost();
-        return $source;
+        $this->getSource()->battery -= $this->getEnergyCost();
+        $this->getResponse()->setCleaned(
+            $this->getSource()->start->X,
+            $this->getSource()->start->Y,
+        );
+        $this->getResponse()->setPosition($this->getSource()->start);
+        $this->getResponse()->setBatteryLeft($this->getSource()->battery);
     }
 }
