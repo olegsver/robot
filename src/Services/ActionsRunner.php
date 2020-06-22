@@ -7,9 +7,9 @@ use Robot\Components\ResponseBuilder\ResponseBuilder;
 use Robot\Dto\Response;
 use Robot\Dto\Source;
 use Robot\Interfaces\ActionsRunner as ActionsRunnerInterface;
-use Robot\Interfaces\Strategy;
 use Robot\Interfaces\LoggerInterface;
 use Robot\Interfaces\RobotAction;
+use Robot\Interfaces\Strategy;
 
 class ActionsRunner implements ActionsRunnerInterface
 {
@@ -21,17 +21,26 @@ class ActionsRunner implements ActionsRunnerInterface
     private $strategy;
     /** @var LoggerInterface */
     private $logger;
-    
+    /** @var Source|null */
     private $source;
 
-    public function __construct(ActionFactory $factory, ResponseBuilder $builder, Strategy $strategy, LoggerInterface $logger)
-    {
+    public function __construct(
+        ActionFactory $factory,
+        ResponseBuilder $builder,
+        Strategy $strategy,
+        LoggerInterface $logger
+    ) {
         $this->factory = $factory;
         $this->builder = $builder;
         $this->strategy = $strategy;
         $this->logger = $logger;
     }
 
+    /**
+     * @param \Robot\Dto\Source $source
+     * @return \Robot\Dto\Response
+     * @throws \Robot\Exceptions\LogicExcetion
+     */
     public function runActions(Source $source): Response
     {
         $this->source = clone $source;
@@ -44,20 +53,24 @@ class ActionsRunner implements ActionsRunnerInterface
             $action->run();
             if ($action->getIsFailed() === true) {
                 $this->logger->log("-- Action failed --", null);
-                if ($this->runBackOffStategy() === false) {
+                if ($this->runBackOffStrategy() === false) {
                     break;
                 }
-                $this->logger->log("-- returns to main sequance --", null);
+                $this->logger->log("-- returns to main sequence --", null);
             }
         }
         return $this->builder->getResponse();
     }
-    
-    private function runBackOffStategy(): bool
+
+    /**
+     * @return bool
+     * @throws \Robot\Exceptions\LogicExcetion
+     */
+    private function runBackOffStrategy(): bool
     {
         $this->logger->log("Starting back off strategy", null);
         foreach ($this->strategy->getStrategy() as $actionsPack) {
-            $success = $this->runBackOffStategyActions($actionsPack);
+            $success = $this->runBackOffStrategyActions($actionsPack);
             if ($success === true) {
                 $this->logger->log("Strategy completed successfull", null);
                 return true;
@@ -65,8 +78,13 @@ class ActionsRunner implements ActionsRunnerInterface
         }
         return false;
     }
-    
-    private function runBackOffStategyActions(array $actionsPack): bool
+
+    /**
+     * @param array $actionsPack
+     * @return bool
+     * @throws \Robot\Exceptions\LogicExcetion
+     */
+    private function runBackOffStrategyActions(array $actionsPack): bool
     {
         $this->logger->log("strategy found:", $actionsPack);
         foreach ($actionsPack as $actionCode) {
@@ -75,14 +93,19 @@ class ActionsRunner implements ActionsRunnerInterface
                 return true;
             }
             $action->run();
-            if ($action->getIsFailed() === true) {#
+            if ($action->getIsFailed() === true) {
                 $this->logger->log("strategy failed", null);
                 return false;
             }
         }
         return true;
     }
-    
+
+    /**
+     * @param string $actionCode
+     * @return \Robot\Interfaces\RobotAction
+     * @throws \Robot\Exceptions\LogicExcetion
+     */
     private function getAction(string $actionCode): RobotAction
     {
         return $this->factory->makeActionByActionCode($actionCode, $this->builder, $this->source);

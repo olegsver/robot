@@ -7,7 +7,6 @@ use Robot\Dto\Response;
 use Robot\Dto\RobotRequest;
 use Robot\Enums\SerializeTypes;
 use Robot\Interfaces\ResponseEntityManager as ResponseEntityManagerInterface;
-use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ResponseEntityManager implements ResponseEntityManagerInterface
@@ -27,6 +26,10 @@ class ResponseEntityManager implements ResponseEntityManagerInterface
         $this->serializer = $serializer;
     }
 
+    /**
+     * @param \Robot\Dto\RobotRequest $request
+     * @param \Robot\Dto\Response $response
+     */
     public function save(RobotRequest $request, Response $response): void
     {
         $json = $this->serializer->serialize(

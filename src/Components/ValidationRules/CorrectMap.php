@@ -13,8 +13,8 @@ class CorrectMap implements Rule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value): bool
@@ -41,7 +41,7 @@ class CorrectMap implements Rule
     private function validateStates(array $yPack): bool
     {
         foreach ($yPack as $xCord => $value) {
-            if (!in_array($value, SectorStates::getAll())) {
+            if (!in_array($value, SectorStates::getAll(), true)) {
                 $this->lastError = "Incorrect sector state in map: {$value}";
                 return false;
             }

@@ -36,7 +36,7 @@ class CorrectStartPosition implements Rule
             $this->lastError = "Wrong start position sector: {$sector}";
             return false;
         }
-        if (!in_array($value->start->facing, Directions::getAll())) {
+        if (!in_array($value->start->facing, Directions::getAll(), true)) {
             $this->lastError = 'Wrong facing direction';
             return false;
         }

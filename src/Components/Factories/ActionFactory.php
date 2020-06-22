@@ -4,7 +4,6 @@ namespace Robot\Components\Factories;
 
 use Robot\Components\ResponseBuilder\ResponseBuilder;
 use Robot\Components\RobotActions\CleanSectorAction;
-use Robot\Components\RobotActions\CreanSectorAction;
 use Robot\Components\RobotActions\GoBackAction;
 use Robot\Components\RobotActions\GoFrontAction;
 use Robot\Components\RobotActions\TurnLeftAction;

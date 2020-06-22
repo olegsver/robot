@@ -39,7 +39,11 @@ abstract class BaseCommand
         return $this->logger;
     }
 
-
+    /**
+     * @param array $argvParams
+     * @return \Robot\Dto\RobotRequest
+     * @throws \Robot\Exceptions\ValidationException
+     */
     abstract protected function runCommand(array $params): void;
 
     abstract protected function getHelpMessage(): string;

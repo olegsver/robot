@@ -8,7 +8,7 @@ class Response
     public $visited = [];
     /** @var Coord[] */
     public $cleaned = [];
-    /** @var StartPosition[] */
+    /** @var StartPosition */
     public $final;
     /** @var int */
     public $battery;
