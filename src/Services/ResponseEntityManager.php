@@ -7,6 +7,7 @@ use Robot\Dto\Response;
 use Robot\Dto\RobotRequest;
 use Robot\Enums\SerializeTypes;
 use Robot\Interfaces\ResponseEntityManager as ResponseEntityManagerInterface;
+use Symfony\Component\Serializer\Encoder\JsonEncode;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class ResponseEntityManager implements ResponseEntityManagerInterface
@@ -28,8 +29,11 @@ class ResponseEntityManager implements ResponseEntityManagerInterface
 
     public function save(RobotRequest $request, Response $response): void
     {
-        //$response = new Response($serializer->serialize($data, JsonEncoder::FORMAT, [JsonEncode::OPTIONS => JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT]))
-        $json = $this->serializer->serialize($response, SerializeTypes::TYPE_JSON);
+        $json = $this->serializer->serialize(
+            $response,
+            SerializeTypes::TYPE_JSON,
+            ['json_encode_options' => JSON_PRETTY_PRINT | JSON_THROW_ON_ERROR]
+        );
         $this->fileHelper->saveFileSourceOrFail($request->result, $json);
     }
 }
