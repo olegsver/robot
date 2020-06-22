@@ -9,14 +9,14 @@ use Robot\Enums\Actions;
 
 class BackOffStrategy implements Strategy
 {
-	public function getStrategy(): array
-	{
-		return [
-			[Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_LEFT],
-			[Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_RIGHT],
-			[Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_RIGHT],
-			[Actions::TURN_RIGHT, Actions::BACK, Actions::TURN_RIGHT, Actions::ADVANCE],
-			[Actions::TURN_LEFT, Actions::TURN_LEFT, Actions::ADVANCE],
-		];
-	}
+    public function getStrategy(): array
+    {
+        return [
+            [Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_LEFT],
+            [Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_RIGHT],
+            [Actions::TURN_RIGHT, Actions::ADVANCE, Actions::TURN_RIGHT],
+            [Actions::TURN_RIGHT, Actions::BACK, Actions::TURN_RIGHT, Actions::ADVANCE],
+            [Actions::TURN_LEFT, Actions::TURN_LEFT, Actions::ADVANCE],
+        ];
+    }
 }

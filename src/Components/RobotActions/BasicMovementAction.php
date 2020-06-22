@@ -18,8 +18,8 @@ abstract class BasicMovementAction extends BasicAction
             $this->getSource()->start->Y = $newY;
             $this->getResponse()->setVisited($newX, $newY);
         } else {
-			$this->setIsFailed(true);
-		}
+            $this->setIsFailed(true);
+        }
 
         $this->getResponse()->setPosition($this->getSource()->start);
         $this->getResponse()->setBatteryLeft($this->getSource()->battery);

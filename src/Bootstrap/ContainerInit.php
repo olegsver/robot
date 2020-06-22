@@ -38,7 +38,7 @@ class ContainerInit
 
     public function init(): void
     {
-		$this->container->bind(Strategy::class, BackOffStrategy::class);
+        $this->container->bind(Strategy::class, BackOffStrategy::class);
         $this->container->bind(ResponseEntityManagerInteface::class, ResponseEntityManager::class);
         $this->container->bind(LoggerInterface::class, OutputLogger::class);
         $this->container->bind(SerializerInterface::class, JsonSerializer::class);

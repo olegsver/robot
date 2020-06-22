@@ -11,8 +11,8 @@ abstract class BasicAction
     private $response;
     /** @var Source */
     private $source;
-	
-	private $failed = false;
+    
+    private $failed = false;
 
     public function __construct(ResponseBuilder $builder, Source $source)
     {
@@ -29,16 +29,16 @@ abstract class BasicAction
     {
         return $this->source;
     }
-	
-	public function getIsFailed(): bool
-	{
-		return $this->failed;
-	}
-	
-	protected function setIsFailed(bool $failed): void 
-	{
-		$this->failed = $failed;
-	}
+    
+    public function getIsFailed(): bool
+    {
+        return $this->failed;
+    }
+    
+    protected function setIsFailed(bool $failed): void
+    {
+        $this->failed = $failed;
+    }
 
     abstract protected function getEnergyCost(): int;
 

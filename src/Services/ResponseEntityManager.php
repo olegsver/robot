@@ -28,7 +28,7 @@ class ResponseEntityManager implements ResponseEntityManagerInterface
 
     public function save(RobotRequest $request, Response $response): void
     {
-		//$response = new Response($serializer->serialize($data, JsonEncoder::FORMAT, [JsonEncode::OPTIONS => JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT]))
+        //$response = new Response($serializer->serialize($data, JsonEncoder::FORMAT, [JsonEncode::OPTIONS => JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT]))
         $json = $this->serializer->serialize($response, SerializeTypes::TYPE_JSON);
         $this->fileHelper->saveFileSourceOrFail($request->result, $json);
     }
