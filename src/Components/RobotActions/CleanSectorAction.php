@@ -4,7 +4,7 @@ namespace Robot\Components\RobotActions;
 
 use Robot\Interfaces\RobotAction;
 
-class CreanSectorAction extends BasicAction implements RobotAction
+class CleanSectorAction extends BasicAction implements RobotAction
 {
     private const PRICE = 5;
 

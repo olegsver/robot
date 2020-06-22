@@ -4,6 +4,7 @@ namespace Robot\Tests\Components\Factories;
 
 use Robot\Components\Factories\ActionFactory;
 use Robot\Components\ResponseBuilder\ResponseBuilder;
+use Robot\Components\RobotActions\CleanSectorAction;
 use Robot\Components\RobotActions\CreanSectorAction;
 use Robot\Components\RobotActions\GoBackAction;
 use Robot\Components\RobotActions\GoFrontAction;
@@ -15,7 +16,7 @@ use Robot\Tests\BaseTestCase;
 
 class ActionFactoryTest extends BaseTestCase
 {
-    public function testMakeActionByActionCode()
+    public function testMakeActionByActionCode(): void
     {
         $factory = new ActionFactory();
         $response = $this->createMock(ResponseBuilder::class);
@@ -25,7 +26,7 @@ class ActionFactoryTest extends BaseTestCase
             Actions::TURN_RIGHT => TurnRightAction::class,
             Actions::ADVANCE => GoFrontAction::class,
             Actions::BACK => GoBackAction::class,
-            Actions::CLEAN => CreanSectorAction::class,
+            Actions::CLEAN => CleanSectorAction::class,
         ];
         foreach ($validMap as $action => $class) {
             $result = $factory->makeActionByActionCode($action, $response, $source);

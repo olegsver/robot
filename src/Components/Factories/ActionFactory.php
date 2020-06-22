@@ -3,6 +3,7 @@
 namespace Robot\Components\Factories;
 
 use Robot\Components\ResponseBuilder\ResponseBuilder;
+use Robot\Components\RobotActions\CleanSectorAction;
 use Robot\Components\RobotActions\CreanSectorAction;
 use Robot\Components\RobotActions\GoBackAction;
 use Robot\Components\RobotActions\GoFrontAction;
@@ -37,7 +38,7 @@ class ActionFactory
 
     private function makeCreanSectorAction(ResponseBuilder $builder, Source $source): RobotAction
     {
-        return new CreanSectorAction($builder, $source);
+        return new CleanSectorAction($builder, $source);
     }
 
     public function makeActionByActionCode(string $actionCode, ResponseBuilder $builder, Source $source): RobotAction
