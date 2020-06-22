@@ -40,7 +40,7 @@ abstract class BaseCommand
     }
 
     /**
-     * @param array $argvParams
+     * @param array $params
      * @throws \Robot\Exceptions\ValidationException
      */
     abstract protected function runCommand(array $params): void;
